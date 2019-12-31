@@ -2,19 +2,8 @@ import random
 import time
 
 
-def new_board():
-    return [
-        [random.randint(0, 1), random.randint(0, 1), random.randint(
-            0, 1), random.randint(0, 1), random.randint(0, 1)],
-        [random.randint(0, 1), random.randint(0, 1), random.randint(
-            0, 1), random.randint(0, 1), random.randint(0, 1)],
-        [random.randint(0, 1), random.randint(0, 1), random.randint(
-            0, 1), random.randint(0, 1), random.randint(0, 1)],
-        [random.randint(0, 1), random.randint(0, 1), random.randint(
-            0, 1), random.randint(0, 1), random.randint(0, 1)],
-        [random.randint(0, 1), random.randint(0, 1), random.randint(
-            0, 1), random.randint(0, 1), random.randint(0, 1)],
-    ]
+def new_board(row_num, col_num):
+    return [[random.randint(0, 1) for i in range(col_num)] for i in range(row_num)]
 
 
 def pretty_print_board(board):
@@ -49,7 +38,7 @@ def next_generation(board):
 
 if __name__ == "__main__":
     print("\u001b[2J")
-    board = new_board()
+    board = new_board(10,10)
     pretty_print_board(board)
     print()
     while board != [[0 for i in range(5)] for i in range(5)]:
