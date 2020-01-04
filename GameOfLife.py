@@ -6,7 +6,8 @@ def dead_state(width, height):
 
 
 def random_state(width, height):
-    return [[round(random.random()) for j in range(width)] for i in range(height)]
+    return [[round(random.random()) for j in range(width)]
+            for i in range(height)]
 
 
 def pretty_print_board(board):
