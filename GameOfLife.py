@@ -82,6 +82,4 @@ def next_board_state(board):
     return future
 
 
-pretty_print_board_debug(next_board_state([[1, 0, 1],
-                                           [0, 1, 0],
-                                           [0, 0, 0]]))
+pretty_print_board_debug(next_board_state([[0, 0, 1], [0, 1, 1], [0, 0, 0]]))
