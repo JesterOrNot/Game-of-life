@@ -25,9 +25,17 @@ def pretty_print_board_debug(board):
         print(row)
 
 
+def get_width(board):
+    return len(board)
+
+
+def get_height(board):
+    return len(board[0])
+
+
 def live_neighbors(cell, board):
-    width = len(board)
-    height = len(board[0])
+    width = get_width(board)
+    height = get_height(board)
     x = cell[0]
     y = cell[1]
     alive = 0
@@ -46,7 +54,34 @@ def live_neighbors(cell, board):
     return alive
 
 
-board = random_state(10, 10)
-pretty_print_board_debug(board)
+def next_state(board, row, column):
+    alive_neighbors = live_neighbors((row, column), board)
+    if board[row][column] == 0:
+        if alive_neighbors == 3:
+            return 1
+        else:
+            return 0
+    else:
+        if alive_neighbors <= 1:
+            return 0
+        elif alive_neighbors <= 3:
+            return 1
+        else:
+            return 0
 
-print(live_neighbors((1, 1), board))
+
+def next_board_state(board):
+    width = get_width(board)
+    height = get_height(board)
+    future = dead_state(width, height)
+
+    for x in range(0, width):
+        for y in range(0, height):
+            future[x][y] = next_state(board, x, y)
+
+    return future
+
+
+pretty_print_board_debug(next_board_state([[1, 0, 1],
+                                           [0, 1, 0],
+                                           [0, 0, 0]]))
